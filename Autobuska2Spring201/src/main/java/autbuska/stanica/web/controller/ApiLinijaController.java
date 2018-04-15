@@ -9,8 +9,12 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -46,7 +50,7 @@ public class ApiLinijaController {
 	private KupovinaToKupovinaDTO toKupovinaDTO;
 
 	
-	@RequestMapping(method=RequestMethod.GET)
+	@GetMapping
 	public ResponseEntity<List<LinijaDTO>> get(@RequestParam(defaultValue="0") int pageNum,
 				@RequestParam(required=false) String destinacija,
 				@RequestParam(required=false) Float maxCena,
@@ -69,7 +73,7 @@ public class ApiLinijaController {
 				HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/{id}", method=RequestMethod.GET)
+	@GetMapping(value="/{id}")
 	public ResponseEntity<LinijaDTO> get(@PathVariable Long id){
 		Linija linija = linijaService.getOne(id);
 		
@@ -82,9 +86,7 @@ public class ApiLinijaController {
 				HttpStatus.OK);
 	}
 	
-	@RequestMapping(
-			method=RequestMethod.POST,
-			consumes="application/json")
+	@PostMapping(consumes="application/json")
 	public ResponseEntity<LinijaDTO> add(
 			@Validated @RequestBody LinijaDTO newLinija){
 		
@@ -95,7 +97,7 @@ public class ApiLinijaController {
 				toDTO.convert(linija), 
 				HttpStatus.CREATED);
 	}
-	@RequestMapping(method=RequestMethod.POST, value="/{id}/kupovine", consumes="application/json")
+	@PostMapping(value="/{id}/kupovine", consumes="application/json")
 	public ResponseEntity<KupovinaDTO> kupiKartu(@PathVariable Long id, 
 												 @RequestBody Integer brojMesta){
 	
@@ -109,10 +111,7 @@ public class ApiLinijaController {
 		}
 	}
 	
-	@RequestMapping(
-			value="/{id}",
-			method=RequestMethod.PUT,
-			consumes="application/json")
+	@PutMapping(value="/{id}", consumes="application/json")
 	public ResponseEntity<LinijaDTO> edit(
 		@PathVariable Long id,
 		@Validated @RequestBody LinijaDTO editedLinija){
@@ -129,7 +128,7 @@ public class ApiLinijaController {
 				HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/{id}",method=RequestMethod.DELETE)
+	@DeleteMapping(value="/{id}")
 	public ResponseEntity<LinijaDTO> delete(
 			@PathVariable Long id){
 		
