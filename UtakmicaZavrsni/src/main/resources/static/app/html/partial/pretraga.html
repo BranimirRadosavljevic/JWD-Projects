@@ -1,0 +1,53 @@
+<div ng-controller="pretragaCtrl">
+
+	<br><br>
+		<div class="btn pull-right">
+			<button ng-click="dodaj()" type="button" class="btn btn-primary">Dodaj igrača</button>	
+		</div>
+		<br><br>
+		<form>
+			<div class="form-group">
+				<label for="imeIPrezimeTI">Ime i prezime</label> <input
+					ng-model="trazeniIgrac.imeIPrezime" type="text" class="form-control"
+					id="imeIPrezimeTI">
+			</div>
+			<div class="form-group">
+				<label for="brojTI">Broj</label> <input
+					ng-model="trazeniIgrac.broj" type="text" class="form-control"
+					id="brojTI">
+			</div>	
+			<div class="form-group">
+				<label for="timTI">Tim</label> <select
+					ng-model="trazeniIgrac.timId" class="form-control" id="timTI">
+					<option value=""></option>
+					<option ng-repeat="t in timovi" value="{{t.id}}">{{t.ime}}</option>
+				</select>			
+			</div>
+			
+			<button ng-click="trazi()" type="button" class="btn btn-primary">Traži</button>
+			
+		</form>
+		<br>
+	<div class="btn-group pull-right">
+		<button class="btn btn-primary" ng-click="go(-1)" ng-disabled="pageNum == 0">Prethodna</button>
+		<button class="btn btn-primary" ng-click="go(1)" ng-disabled="pageNum == totalPages - 1">Sledeća</button>
+	</div>
+	<table class="table table-bordered table-striped">
+		<th>Ime i prezime</th>
+		<th>Broj</th>
+		<th>Lične greške</th>
+		<th>Pozicija</th>
+		<th>Tim</th>
+		<tr ng-repeat="i in igraci">
+			<td>{{i.imeIPrezime}}</td>
+			<td>{{i.broj}}</td>
+			<td>{{i.licneGreske}}</td>
+			<td>{{i.pozicijaNaziv}}</td>
+			<td>{{i.timIme}}</td>
+			<td><button ng-click="obrisi(i.id)" class="btn btn-danger">Obriši</button>
+				<button ng-click="izmeni(i.id)" class="btn btn-warning">Izmeni</button>
+				<button ng-click="faul(i.id)" ng-disabled="i.licneGreske >=5" class="btn btn-primary">Faul</button>
+			</td>
+		</tr>
+	</table>
+</div>

@@ -1,0 +1,21 @@
+<div ng-controller="editIgracCtrl">
+   <form>
+		<div class="form-group">
+			<label for="imeIPrezime">Ime i prezime</label> <input
+				ng-model="stariIgrac.imeIPrezime" type="text" class="form-control"
+				id="imeIPrezime">
+		</div>
+		<div class="form-group">
+			<label for="broj">Broj</label> <input
+				ng-model="stariIgrac.broj" type="text" class="form-control"
+				id="broj">
+		</div>
+		<div class="form-group">
+			<label for="licneGreske">Lične greške</label> <input
+				ng-model="stariIgrac.licneGreske" type="text" class="form-control"
+				id="licneGreske">
+		</div>
+						
+		<button ng-click="izmeni()" type="button" class="btn btn-primary">Izmeni</button>
+	</form>
+</div>

@@ -1,0 +1,31 @@
+<div ng-controller="dodajIgracaCtrl">
+	<br><br>
+	<form>
+		<div class="form-group">
+			<label for="imeIPrezimeNI">Ime i prezime</label> <input
+				ng-model="noviIgrac.imeIPrezime" type="text" class="form-control"
+				id="imeIPrezimeNI">
+		</div>
+		<div class="form-group">
+			<label for="brojNI">Broj</label> <input
+				ng-model="noviIgrac.broj" type="text" class="form-control"
+				id="brojNI">
+		</div>
+		
+		<div class="form-group">
+			<label for="pozicijaNI">Pozicija</label> <select
+				ng-model="noviIgrac.pozicijaId" class="form-control" id="pozicijaNI">
+				<option ng-repeat="p in pozicije" ng-value="p.id">{{p.naziv}}</option>
+			</select>
+		</div>
+
+		<div class="form-group">
+			<label for="timNI">Tim</label> <select
+				ng-model="noviIgrac.timId" class="form-control" id="timNI">
+				<option ng-repeat="t in timovi" ng-value="t.id">{{t.ime}}</option>
+			</select>
+		</div>
+	
+		<button ng-click="dodajIgraca()" type="button" class="btn btn-primary">Dodaj</button>
+	</form>
+</div>
