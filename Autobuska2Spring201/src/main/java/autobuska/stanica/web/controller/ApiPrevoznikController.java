@@ -7,7 +7,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -42,7 +44,7 @@ public class ApiPrevoznikController {
 	@Autowired
 	private LinijaToLinijaDTO toLinijaDTO;
 
-	@RequestMapping(method = RequestMethod.GET)
+	@GetMapping
 	ResponseEntity<List<PrevoznikDTO>> getPrevoznici() {
 
 		List<Prevoznik> prevoznici = prevoznikService.findAll();
@@ -55,7 +57,7 @@ public class ApiPrevoznikController {
 
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	@GetMapping(value = "/{id}")
 	ResponseEntity<PrevoznikDTO> getPrevoznik(@PathVariable Long id) {
 		Prevoznik prevoznik = prevoznikService.getOne(id);
 		if (prevoznik == null) {
@@ -65,7 +67,7 @@ public class ApiPrevoznikController {
 		return new ResponseEntity<>(toPrevoznikDTO.convert(prevoznik), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/{prevoznikId}/linije", method = RequestMethod.GET)
+	@GetMapping(value = "/{prevoznikId}/linije")
 	ResponseEntity<List<LinijaDTO>> getLinije(@RequestParam(defaultValue = "0") int pageNum, 
 			@PathVariable Long prevoznikId) {
 		
@@ -76,9 +78,7 @@ public class ApiPrevoznikController {
 		return new ResponseEntity<>(toLinijaDTO.convert(linije.getContent()), headers, HttpStatus.OK);
 	}
 
-	@RequestMapping(
-			method=RequestMethod.POST,
-			consumes="application/json")
+	@PostMapping(consumes="application/json")
 	public ResponseEntity<PrevoznikDTO> add(
 			@RequestBody PrevoznikDTO noviPrevoznik){
 		

@@ -18,7 +18,7 @@ public class JpaLinijaService
 
 	@Override
 	public Page<Linija> findAll(int pageNum) {
-		return linijaRepository.findAll(new PageRequest(pageNum, 5));
+		return linijaRepository.findAll(PageRequest.of(pageNum, 5));
 		 
 	}
 	
@@ -45,12 +45,12 @@ public class JpaLinijaService
 			destinacija = "%" + destinacija + "%";
 		}
 		
-		return linijaRepository.pretraga(destinacija, maxCena, prevoznikId, new PageRequest(pageNum, 5));
+		return linijaRepository.pretraga(destinacija, maxCena, prevoznikId, PageRequest.of(pageNum, 5));
 	}
 
 	@Override
 	public Page<Linija> findByPrevoznikId(Long prevoznikId ,int pageNum) {
-		return linijaRepository.findByPrevoznikId(prevoznikId, new PageRequest(pageNum, 5));
+		return linijaRepository.findByPrevoznikId(prevoznikId, PageRequest.of(pageNum, 5));
 	}
 
 }

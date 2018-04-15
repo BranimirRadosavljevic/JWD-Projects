@@ -22,7 +22,6 @@ public class TestData {
 	@PostConstruct
 	public void init() {
 		
-		//pravimo 3 sajma
 		for (int i = 1; i <= 3; i++) {
 			Prevoznik prevoznik = new Prevoznik();
 			prevoznik.setNaziv("Naziv " + i);
@@ -30,8 +29,7 @@ public class TestData {
 			prevoznik.setPib( i + i + "344562018");
 			prevoznikService.save(prevoznik);
 
-			//za svakog korisnika pravimo po 15 standova
-			for (int j = 1; j <= 15; j++) {
+		for (int j = 1; j <= 5; j++) {
 				Linija linija = new Linija();
 				linija.setBrojMesta(j+j);
 				linija.setCenaKarte((float)j + 500);
