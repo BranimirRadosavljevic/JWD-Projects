@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: APOTEKA
+Implementation-Version: 2.0.1.RELEASE
+Built-By: Bane
+Implementation-Vendor-Id: org.springframework.boot
+Build-Jdk: 1.8.0_102
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/ApotekaSpring2
+Created-By: Maven Integration for Eclipse
+

@@ -1,0 +1,92 @@
+<div ng-controller="lekoviCtrl">
+	
+	<form>
+		<div class="form-group">
+			<label for="naziv">Naziv</label> <input
+				ng-model="noviLek.naziv" type="text" class="form-control"
+				id="naziv">
+		</div>
+		<div class="form-group">
+			<label for="generickiNaziv">Generički naziv</label> <input
+				ng-model="noviLek.generickiNaziv" type="text" class="form-control"
+				id="generickiNaziv">
+		</div>
+		<div class="form-group">
+			<label for="kolicinaNaStanju">Količina na stanju</label> <input
+				ng-model="noviLek.kolicinaNaStanju" type="text" class="form-control"
+				id="kolicinaNaStanju">
+		</div>
+		<div class="form-group">
+			<label for="cena">Cena</label> <input
+				ng-model="noviLek.cena" type="text" class="form-control"
+				id="cena">
+		</div>
+		
+		<div class="form-group">
+			<label for="proizvodjac">Proizvođač</label> <select
+				ng-model="noviLek.proizvodjacId" class="form-control" id="proizvodjac">
+				<option ng-repeat="p in proizvodjaci" ng-value="p.id">{{p.ime}}</option>
+			</select>
+		</div>
+
+		<div class="form-group">
+			<label for="apoteka">Apoteka</label> <select
+				ng-model="noviLek.apotekaId" class="form-control" id="apoteka">
+				<option ng-repeat="a in apoteke" ng-value="a.id">{{a.ime}}</option>
+			</select>
+		</div>
+		
+
+		<button ng-click="dodaj()" type="button" class="btn btn-primary">Dodaj</button>
+	</form>
+		
+	<br><br><br>
+
+	<!-- <label for="apoteka">Prikaži sve lekove apoteke</label>
+		<select >
+			<option ng-click="getLekovi(a.id)" ng-repeat="a in apoteke" value="{{a.id}}">{{a.ime}}</option>
+		</select> -->
+	<form class="form-inline">
+			<div class="form-group">
+				<label for="apoteka">Apoteka</label> <select
+					ng-model="trazeniLek.apotekaId" class="form-control" id="apoteka">
+					<option value=""></option>
+					<option ng-repeat="a in apoteke" ng-value="a.id">{{a.ime}}</option>
+				</select>			
+			</div>
+			<div class="form-group">
+				<label for="nazivGenNaziv">Naziv/Generički naziv</label> <input
+					ng-model="trazeniLek.nazivGenNaziv" type="text" class="form-control"
+					id="nazivGenNaziv">
+			</div>
+			<button ng-click="trazi()" type="button" class="btn btn-primary">Traži</button>
+			<button ng-click=ponisti() class="btn btn-warning pull-right" type="button">Poništi pretragu</button>
+		</form>
+		<br>
+	<table class="table table-bordered table-striped">
+		<th>Naziv</th>
+		<th>Generički naziv</th>
+		<th>Količina</th>
+		<th>Cena</th>
+		<th>Naziv apoteke</th>
+		<th>Naziv proizvođača</th>
+		<tr ng-repeat="l in lekovi">
+			<td>{{l.naziv}}</td>
+			<td>{{l.generickiNaziv}}</td>
+			<td>{{l.kolicinaNaStanju}}</td>
+			<td>{{l.cena}}</td>
+			<td>{{l.apotekaIme}}</td>
+			<td>{{l.proizvodjacIme}}</td>
+			<td><button ng-click="kupi(l.id)" class="btn btn-primary">Kupovina</button>
+				<button ng-click="izmeni(l.id)" class="btn btn-warning">Izmena</button>
+				<button ng-click="obrisi(l.id)" class="btn btn-default">Brisanje</button>
+			</td>
+		</tr>
+	</table>
+	<hr>
+	<div class="btn-group pull-right">
+		<button class="btn btn-primary" ng-click="go(-1)" ng-disabled="pageNum == 0">Prethodna</button>
+		<button class="btn btn-primary" ng-click="go(1)" ng-disabled="pageNum == totalPages - 1">Sledeća</button>
+	</div>
+
+</div>

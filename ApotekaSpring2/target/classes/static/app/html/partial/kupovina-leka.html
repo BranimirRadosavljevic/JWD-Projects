@@ -1,0 +1,32 @@
+<div ng-controller="kupiLekCtrl">
+	<table>
+		<tbody><tr>
+					<th>Naziv:</th>
+					<td>{{lekZaKupovinu.naziv}}</td>
+				</tr>
+				<tr>
+					<th>Generički naziv:</th>
+					<td>{{lekZaKupovinu.generickiNaziv}}</td>
+				</tr>
+				<tr>
+					<th>Količina:</th>
+					<td>{{lekZaKupovinu.kolicinaNaStanju}}</td>
+				</tr>
+				<tr>
+					<th>Apoteka:</th>
+					<td>{{lekZaKupovinu.apotekaIme}}</td>
+				</tr>
+				<tr>
+					<th>Proizvođač:</th>
+					<td>{{lekZaKupovinu.proizvodjacIme}}</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<th>Količina:</th>
+					<td><input ng-model="kupovina.brojKomada" value="{{kupovina.brojKomada}}"></td>
+					<td><button class="btn btn-primary" ng-click="kupi()">Kupi</button>	 </td>
+				</tr></tbody>
+	</table>
+</div>

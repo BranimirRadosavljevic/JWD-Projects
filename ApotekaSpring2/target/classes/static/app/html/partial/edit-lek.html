@@ -1,0 +1,26 @@
+<div ng-controller="editLekCtrl">
+   <form>
+		<div class="form-group">
+			<label for="naziv">Naziv</label> <input
+				ng-model="stariLek.naziv" type="text" class="form-control"
+				id="naziv">
+		</div>
+		<div class="form-group">
+			<label for="generickiNaziv">Generički naziv</label> <input
+				ng-model="stariLek.generickiNaziv" type="text" class="form-control"
+				id="generickiNaziv">
+		</div>
+		<div class="form-group">
+			<label for="kolicinaNaStanju">Količina na stanju</label> <input
+				ng-model="stariLek.kolicinaNaStanju" type="text" class="form-control"
+				id="kolicinaNaStanju">
+		</div>
+		<div class="form-group">
+			<label for="cena">Cena</label> <input
+				ng-model="stariLek.cena" type="text" class="form-control"
+				id="cena">
+		</div>
+				
+		<button ng-click="izmeni()" type="button" class="btn btn-primary">Izmeni</button>
+	</form>
+</div>
